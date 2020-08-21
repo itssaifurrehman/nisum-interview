@@ -1,8 +1,9 @@
 package com.saif.nisum.controller;
 
-import com.saif.nisum.exception.UserManagementServiceErrorCodes;
 import com.saif.nisum.exception.UserManagementServiceException;
 import com.saif.nisum.model.UserDTO;
+import java.util.List;
+
 import com.saif.nisum.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -29,6 +31,7 @@ public class UserController {
 	public ResponseEntity<UserDTO> addUser(@RequestBody UserDTO userDTO) throws Exception {
 
 		UserDTO response = userService.create(userDTO);
+
 		return new ResponseEntity<UserDTO>(response, HttpStatus.CREATED);
 	}
 
@@ -37,33 +40,26 @@ public class UserController {
 	public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO) throws Exception {
 
 		UserDTO response = userService.update(userDTO);
+
 		return new ResponseEntity<UserDTO>(response, HttpStatus.OK);
 	}
 
 	@CrossOrigin
 	@GetMapping("/{id}")
 	public ResponseEntity<UserDTO> getById(@PathVariable("id") String id) throws UserManagementServiceException {
-		UserDTO response = new UserDTO();
-		try {
-			response = userService.getId(id);
-		} catch (UserManagementServiceException e) {
-			throw new UserManagementServiceException(UserManagementServiceErrorCodes.USERID_NOT_FOUND);
-		}
+
+		UserDTO response = userService.getId(id);
+
 		return new ResponseEntity<UserDTO>(response, HttpStatus.OK);
 	}
 
 	@CrossOrigin
 	@GetMapping
-	public ResponseEntity<UserDTO> get() throws UserManagementServiceException {
+	public ResponseEntity<List<UserDTO>> get() throws UserManagementServiceException {
 
-		UserDTO response = new UserDTO();
-		try {
-			response = (UserDTO) userService.get();
-		} catch (UserManagementServiceException e) {
-			throw new UserManagementServiceException(UserManagementServiceErrorCodes.EMPTY_DATABASE);
-		}
+		List<UserDTO> response = userService.get();
 
-		return new ResponseEntity<UserDTO>(response, HttpStatus.OK);
+		return new ResponseEntity<List<UserDTO>>(response, HttpStatus.OK);
 	}
 
 }
