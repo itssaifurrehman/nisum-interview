@@ -1,7 +1,7 @@
 package com.saif.nisum.model;
 
-
 import java.sql.Date;
+import java.util.Arrays;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -16,7 +16,7 @@ public class UserDTO {
 	private String name;
 	private String email;
 	private String password;
-	private Date  created;
+	private Date created;
 	private Date modified;
 	private Date lastLogin;
 	private Phones phones[];
@@ -107,7 +107,7 @@ public class UserDTO {
 	public String toString() {
 		return String.format(
 				"UserDTO [userId=%s, name=%s, email=%s, password=%s, created=%s, modified=%s, lastLogin=%s, phones=%s, token=%s, isactive=%s]",
-				userId, name, email, password, created, modified, lastLogin, phones, token, isactive);
+				userId, name, email, password, created, modified, lastLogin, Arrays.toString(phones), token, isactive);
 	}
 
 }
