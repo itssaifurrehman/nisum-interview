@@ -115,7 +115,7 @@ public class UserService {
 	public void validateEmailAlreadyExist(String userEmail) throws UserManagementServiceException {
 		Optional<UserDTO> response = userRepo.findByEmail(userEmail);
 
-		if (Objects.nonNull(response) || response.isPresent()) {
+		if (response.isPresent()) {
 			throw new UserManagementServiceException(UserManagementServiceErrorCodes.USER_ALREADY_EXISTS);
 		}
 	}
