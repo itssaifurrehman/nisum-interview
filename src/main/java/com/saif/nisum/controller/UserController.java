@@ -5,10 +5,12 @@ import com.saif.nisum.model.UserDTO;
 import java.util.List;
 
 import com.saif.nisum.service.UserService;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,6 +62,12 @@ public class UserController {
 		List<UserDTO> response = userService.get();
 
 		return new ResponseEntity<List<UserDTO>>(response, HttpStatus.OK);
+	}
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> delete(@PathVariable("userId") String id) throws UserManagementServiceException {
+		userService.delete(id);
+		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
 }

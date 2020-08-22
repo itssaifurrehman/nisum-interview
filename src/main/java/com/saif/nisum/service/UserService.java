@@ -92,6 +92,17 @@ public class UserService {
 
 	}
 
+	public void delete(String id) throws UserManagementServiceException {
+
+		Optional<UserDTO> response = userRepo.findById(id);
+
+		if (!response.isPresent()) {
+			throw new UserManagementServiceException(UserManagementServiceErrorCodes.USERID_NOT_FOUND);
+		}
+
+		userRepo.deleteById(response.get().getUserId());
+	}
+
 	public void validateEmailAndPassword(String userEmail, String UserPassword) throws UserManagementServiceException {
 		Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(userEmail);
 
