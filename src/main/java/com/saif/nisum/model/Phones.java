@@ -1,10 +1,35 @@
 package com.saif.nisum.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "phones")
 public class Phones {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int phoneId;
 	private String number;
 	private String citycode;
 	private String contrycode;
+
+	@ManyToOne
+	@JoinColumn(name = "FK_phone", updatable = false)
+	private UserDTO userDTO;
+
+	public int getPhoneId() {
+		return phoneId;
+	}
+
+	public void setPhoneId(int phoneId) {
+		this.phoneId = phoneId;
+	}
 
 	public String getNumber() {
 		return number;
@@ -32,7 +57,8 @@ public class Phones {
 
 	@Override
 	public String toString() {
-		return "Phones [number=" + number + ", citycode=" + citycode + ", contrycode=" + contrycode + "]";
+		return String.format("Phones [phoneId=%s, number=%s, citycode=%s, contrycode=%s]", phoneId, number, citycode,
+				contrycode);
 	}
 
 }

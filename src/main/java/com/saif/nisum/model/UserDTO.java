@@ -1,10 +1,12 @@
 package com.saif.nisum.model;
 
 import java.sql.Date;
-import java.util.Arrays;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,9 +21,11 @@ public class UserDTO {
 	private Date created;
 	private Date modified;
 	private Date lastLogin;
-	private Phones phones[];
 	private String token;
 	private boolean isactive;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "userDTO")
+	private List<Phones> phones;
 
 	public String getUserId() {
 		return userId;
@@ -79,14 +83,6 @@ public class UserDTO {
 		this.lastLogin = lastLogin;
 	}
 
-	public Phones[] getPhones() {
-		return phones;
-	}
-
-	public void setPhones(Phones[] phones) {
-		this.phones = phones;
-	}
-
 	public String getToken() {
 		return token;
 	}
@@ -103,11 +99,19 @@ public class UserDTO {
 		this.isactive = isactive;
 	}
 
+	public List<Phones> getPhones() {
+		return phones;
+	}
+
+	public void setPhones(List<Phones> phones) {
+		this.phones = phones;
+	}
+
 	@Override
 	public String toString() {
 		return String.format(
-				"UserDTO [userId=%s, name=%s, email=%s, password=%s, created=%s, modified=%s, lastLogin=%s, phones=%s, token=%s, isactive=%s]",
-				userId, name, email, password, created, modified, lastLogin, Arrays.toString(phones), token, isactive);
+				"UserDTO [userId=%s, name=%s, email=%s, password=%s, created=%s, modified=%s, lastLogin=%s, token=%s, isactive=%s, phones=%s]",
+				userId, name, email, password, created, modified, lastLogin, token, isactive, phones);
 	}
 
 }
