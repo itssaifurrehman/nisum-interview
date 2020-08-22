@@ -23,12 +23,6 @@ public enum UserManagementServiceErrorCodes implements ServiceErrorMsg {
 		this.httpStatus = httpStatus;
 	}
 
-	private UserManagementServiceErrorCodes(String message, String errorDetail, HttpStatus httpStatus) {
-		this.message = message;
-		this.errorDetail = errorDetail;
-		this.httpStatus = httpStatus;
-	}
-
 	private UserManagementServiceErrorCodes(String message) {
 		this.message = message;
 	}

@@ -53,8 +53,6 @@ public class UserService {
 
 	public UserDTO create(UserDTO userDTO) throws UserManagementServiceException {
 
-		System.out.println(userDTO);
-
 		validateEmailAndPassword(userDTO.getEmail(), userDTO.getPassword());
 		validateEmailAlreadyExist(userDTO.getEmail());
 
@@ -66,8 +64,6 @@ public class UserService {
 		userDTO.setModified(currentDate);
 		userDTO.setLastLogin(currentDate);
 		userDTO.setIsactive(true);
-
-		System.out.println(userDTO);
 
 		return userRepo.save(userDTO);
 	}
@@ -91,7 +87,6 @@ public class UserService {
 		oldRecord.setLastLogin(currentDate);
 		oldRecord.setIsactive(userDTO.isIsactive());
 		oldRecord.setPhones(userDTO.getPhones());
-
 
 		return userRepo.save(oldRecord);
 

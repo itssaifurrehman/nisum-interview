@@ -25,7 +25,7 @@ public class UserExceptionHandler extends ResponseEntityExceptionHandler {
 
 		String code = UserManagementServiceErrorCodes.GENERAL_EXCEPTION.getMessage();
 
-		String message = "message";
+		String message = "Error Occurred";
 		ServiceExceptionWrapper exception = new ServiceExceptionWrapper(message, code);
 
 		return new ResponseEntity<ServiceExceptionWrapper>(exception, HttpStatus.INTERNAL_SERVER_ERROR);

@@ -1,11 +1,12 @@
-com/saif/nisum/repository/UserRepository.class
-com/saif/nisum/exception/UserManagementServiceException.class
 com/saif/nisum/model/Phones.class
 com/saif/nisum/exception/UserManagementServiceErrorCodes.class
+com/saif/nisum/service/UserService.class
+com/saif/nisum/controller/UserExceptionHandler.class
+com/saif/nisum/repository/UserRepository.class
+com/saif/nisum/exception/UserManagementServiceException.class
+com/saif/nisum/repository/PhonesRepository.class
 com/saif/nisum/NisumInterviewApplication.class
 com/saif/nisum/model/ServiceExceptionWrapper.class
-com/saif/nisum/service/UserService.class
 com/saif/nisum/controller/UserController.class
-com/saif/nisum/controller/UserExceptionHandler.class
 com/saif/nisum/exception/ServiceErrorMsg.class
 com/saif/nisum/model/UserDTO.class
